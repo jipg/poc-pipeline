@@ -1,0 +1,42 @@
+---
+name: Checkers
+
+on: [push]
+
+jobs:
+  linters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Pip installations
+        run: |
+          pip install pre-commit
+          pip install shellcheck-py
+          pip install pydocstyle
+          pip install black
+          pip install prospector
+          pip install radon
+
+      - name: Before Pre-commits
+        run: |
+          pre-commit install --hook-type commit-msg --hook-type pre-push
+          pre-commit install
+
+      - name: Pre-commits
+        run: |
+          pre-commit run --all-files
+
+      - name: Check Cyclomatic Complexity
+        run: |
+          echo "### Cyclomatic Complexity ###"
+          radon cc .
+
+      - name: Check Maintainability Complexity
+        run: |
+          echo "### Maintainability Complexity ###"
+          radon mi .
+
+      - name: Check Computability Complexity
+        run: |
+          echo "### Computability Complexity ###"
+          radon raw .

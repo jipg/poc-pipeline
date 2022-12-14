@@ -1,0 +1,25 @@
+---
+name: Checkers
+
+on: [pull_request]
+
+jobs:
+  linters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Pip installations
+        run: |
+          pip install commitizen
+
+      - name: Before Build
+        run: |
+          cz check
+
+      - name: Build
+        run: |
+          echo "### Building the package ###"
+
+      - name: Publish packages
+        run: |
+          echo "### Package was publish ###"
