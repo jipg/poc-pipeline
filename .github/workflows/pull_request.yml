@@ -16,9 +16,40 @@ jobs:
         run: |
           pip install commitizen
 
-      - name: Before Build
+  tag_repo:
+    name: Get runner id and tag the current code snapshot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Tag and push current repo code
         run: |
-          cz check
+          git tag ${{github.run_id}}
+          git push origin ${{github.run_id}}
+
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
+
+      # - name: Before Build
+      #   run: |
+      #     cz check
 
       # - name: Bump-version
       #   run: |
@@ -28,27 +59,27 @@ jobs:
       #   run: |
       #     echo "### Package was publish ###"
 
-  bump-version:
-    if: "!startsWith(github.event.head_commit.message, 'bump:')"
-    runs-on: ubuntu-latest
-    name: "Bump version and create changelog with commitizen"
-    steps:
-      - name: Check out
-        uses: actions/checkout@v2
-        with:
-          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
-          fetch-depth: 0
+  # bump-version:
+  #   if: "!startsWith(github.event.head_commit.message, 'bump:')"
+  #   runs-on: ubuntu-latest
+  #   name: "Bump version and create changelog with commitizen"
+  #   steps:
+  #     - name: Check out
+  #       uses: actions/checkout@v2
+  #       with:
+  #         token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
+  #         fetch-depth: 0
 
-      - name: Create bump and changelog
-        uses: commitizen-tools/commitizen-action@master
-        with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          changelog_increment_filename: body.md
+  #     - name: Create bump and changelog
+  #       uses: commitizen-tools/commitizen-action@master
+  #       with:
+  #         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+  #         changelog_increment_filename: body.md
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          body_path: "body.md"
-          tag_name: ${{ env.REVISION }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Release
+  #       uses: softprops/action-gh-release@v1
+  #       with:
+  #         body_path: "body.md"
+  #         tag_name: ${{ env.REVISION }}
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
