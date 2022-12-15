@@ -16,9 +16,9 @@ jobs:
         run: |
           pip install commitizen
 
-      - name: Before Build
-        run: |
-          cz check
+      # - name: Before Build
+      #   run: |
+      #     cz check
 
       # - name: Bump-version
       #   run: |
