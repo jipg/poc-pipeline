@@ -8,7 +8,7 @@ on:
       - master
 
 env:
-  tag_version: v0.0.1 #${{github.run_id}}
+  tag_version: v0.0.10 #${{github.run_id}}
 
 jobs:
   commitizen:
@@ -19,15 +19,15 @@ jobs:
         run: |
           pip install commitizen
 
-  tag_repo:
-    name: Get runner id and tag the current code snapshot
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Tag and push current repo code
-        run: |
-          git tag ${{tag_version}}
-          git push origin ${{tag_version}}
+  # tag_repo:
+  #   name: Get runner id and tag the current code snapshot
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Tag and push current repo code
+  #       run: |
+  #         git tag $tag_version
+  #         git push origin $tag_version
 
   build:
     name: Create Release
@@ -41,8 +41,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ tag_version }}
-          release_name: Release ${{ tag_version }}
+          tag_name: $tag_version
+          release_name: ${{ tag_version }}
           body: |
             Changes in this Release
             - First Change
