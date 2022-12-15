@@ -8,7 +8,7 @@ on:
       - master
 
 env:
-  tag_version: v0.0.6 #${{github.run_id}}
+  tag_version: v0.0.7 #${{github.run_id}}
 
 jobs:
   commitizen:
