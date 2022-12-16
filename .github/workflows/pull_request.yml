@@ -18,6 +18,12 @@ jobs:
       - name: Pip installations
         run: |
           pip install commitizen
+      - name: "Set flag from PR"
+        env:
+          PR_VAR: ${{ contains(github.event.pull_request.body, '[pr var]') }}
+        run: |
+          echo "flag=${PR_VAR}" >> $GITHUB_ENV
+          echo "set flag to ${PR_VAR}"
 
   # tag_repo:
   #   name: Get runner id and tag the current code snapshot
