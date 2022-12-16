@@ -54,9 +54,9 @@ jobs:
       #   run: |
       #     cz check
 
-      # - name: Bump-version
-      #   run: |
-      #     echo "### Building the package ###"
+      - name: Bump-version
+        run: |
+          echo "### Building the package ###"
 
       # - name: Publish packages
       #   run: |
