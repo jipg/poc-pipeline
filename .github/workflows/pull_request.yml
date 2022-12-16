@@ -8,7 +8,7 @@ on:
       - master
 
 env:
-  tag_version: v0.0.11 #${{github.run_id}}
+  tag_version: v0.0.12 #${{github.run_id}}
 
 jobs:
   commitizen:
@@ -41,8 +41,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: $tag_version
-          release_name: ${{ github.ref }}
+          tag_name: ${{ tag_version }}
+          release_name: ${{ tag_version }}
           body: |
             Changes in this Release
             - First Change
@@ -54,9 +54,9 @@ jobs:
       #   run: |
       #     cz check
 
-      # - name: Bump-version
-      #   run: |
-      #     echo "### Building the package ###"
+      - name: Bump-version
+        run: |
+          echo "### Building the package ###"
 
       # - name: Publish packages
       #   run: |
