@@ -1,3 +1,9 @@
+## v0.1.3 (2022-12-15)
+
+### Fix
+
+- **ci**: Do correction in the tag_version var JIRA-2 #comment WIP
+
 ## v0.1.2 (2022-12-15)
 
 ### Fix
