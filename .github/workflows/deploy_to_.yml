@@ -15,4 +15,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send greeting
-        run: echo "Hello ${{ inputs.name }}"
+        run: python hello.py ${{ inputs.name }}
