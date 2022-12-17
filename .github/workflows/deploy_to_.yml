@@ -23,10 +23,14 @@ jobs:
     steps:
       - name: List files
         run: |
+          apt install tree
+
+      - name: List files
+        run: |
           echo '**** ls '
           echo $(ls -rlta)
           echo '**** ls ../'
-          echo $(ls -rlta ../)
+          echo $(tree -rlta ../)
 
       - name: Send greeting
         run: python hello.py ${{ inputs.environment }}
