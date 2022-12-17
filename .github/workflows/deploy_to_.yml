@@ -4,15 +4,28 @@ name: Deploy to dev
 on:
   workflow_dispatch:
     inputs:
-      name:
-        # Friendly description to show in the UI instead of 'name'
-        description: "Person to greet"
+      source:
+        description: "Type of the source: 'tag or release'"
         required: true
-        default: "DEV"
+        default: "tag"
+      version:
+        description: "Number in SemVer version format"
+        required: true
+        default: "latest"
+      environment:
+        description: "Environment goal to deploy"
+        required: true
+        default: "dev"
 
 jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
       - name: Send greeting
-        run: python hello.py ${{ inputs.name }}
+        run: python hello.py ${{ inputs.environment }}
+
+      - name: Show inputs
+        run: |
+          echo '\nSource: ${{ inputs.environment }}'
+          echo '\nVersion: ${{ inputs.version }}'
+          echo '\nEnvironment: ${{ inputs.environment }}'
