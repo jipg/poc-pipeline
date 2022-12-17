@@ -42,22 +42,6 @@ jobs:
         run: |
           echo ${{ steps.changelog.outputs }}
 
-      # bump-version:
-      #   if: "!startsWith(github.event.head_commit.message, 'bump:')"
-      #   runs-on: ubuntu-latest
-      #   name: "Bump version and create changelog with commitizen"
-      #   steps:
-      #     - name: Check out
-      #       uses: actions/checkout@v2
-      #       with:
-      #
-      #         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
-      #     - name: Create bump and changelog
-      #       uses: commitizen-tools/commitizen-action@master
-      #       with:
-      #         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
