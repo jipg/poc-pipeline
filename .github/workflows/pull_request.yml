@@ -9,8 +9,8 @@ on:
     types:
       - closed
 
-env:
-  tag_version: v0.0.12 #${{github.run_id}}
+# env:
+#   tag_version: v0.0.12 #${{github.run_id}}
 
 jobs:
   commitizen:
