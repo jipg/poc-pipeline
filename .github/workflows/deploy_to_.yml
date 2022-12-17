@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: List files
         run: |
-          apt install tree
+          apt-get install -y tree
 
       - name: List files
         run: |
