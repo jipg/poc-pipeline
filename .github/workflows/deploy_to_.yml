@@ -1,5 +1,5 @@
 ---
-name: Deploy to dev
+name: Deploy to
 
 on:
   workflow_dispatch:
@@ -21,6 +21,14 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
+
+      - name: List files
+        run: |
+          echo '**** ls '
+          echo 'ls -rlta'
+          echo '**** ls ../'
+          echo 'ls -rlta ../'
+
       - name: Send greeting
         run: python hello.py ${{ inputs.environment }}
 
