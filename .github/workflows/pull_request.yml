@@ -35,10 +35,10 @@ jobs:
 
       - name: Install commitizen
         run: |
-          echo "y\n" | echo "y\n" | pip install commitizen
+          pip install commitizen
           git init
           cz changelog
-          cz bump
+          echo "y\n" | cz bump
 
       # - name: Create bump and changelog
       #   id: changelog
