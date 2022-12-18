@@ -27,21 +27,26 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           # github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      - name: Install commitizen
-        run: |
-          pip install commitizen
+      # - name: Install commitizen
+      #   run: |
+      #     pip install commitizen
+      #     git init
+      #     cz bump
+      #     cz changelog
+
 
       - name: Create bump and changelog
         id: changelog
         uses: commitizen-tools/commitizen-action@master
         with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          # github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           changelog_file: CHANGELOG.md
           changelog_incremental: true
 
