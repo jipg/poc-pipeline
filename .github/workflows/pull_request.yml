@@ -39,8 +39,8 @@ jobs:
           git init
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          cz changelog
-          echo "y\n" | cz bump
+          echo cz bump --yes --bump-message --changelog
+          git push
 
       # - name: Create bump and changelog
       #   id: changelog
