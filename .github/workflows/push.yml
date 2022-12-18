@@ -53,6 +53,9 @@ jobs:
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           echo cz bump --yes --bump-message --changelog
           git push
+          git push --tags
+          cat CHANGELOG.md
+          cat pyproject.toml
 
   # bump-version:
   #   if: "!startsWith(github.event.head_commit.message, 'bump:')"
