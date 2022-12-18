@@ -45,6 +45,17 @@ jobs:
           echo "### Computability Complexity ###"
           radon raw .
 
+      - name: Install commitizen
+        if: "!startsWith(github.event.head_commit.message, 'bump:')"
+        run: |
+          pip install commitizen
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          echo cz bump --yes --bump-message --changelog
+          git add .
+          git commit -m "Make qmubdump"
+          git push
+
   bump-version:
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-latest
@@ -60,11 +71,11 @@ jobs:
           fetch-depth: 0
           token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Create bump and changelog
-        uses: commitizen-tools/commitizen-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # changelog_increment_filename: CHANGELOG.md
+      # - name: Create bump and changelog
+      #   uses: commitizen-tools/commitizen-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      # changelog_increment_filename: CHANGELOG.md
 
       # - name: Create bump and changelog
       #   id: changelog
