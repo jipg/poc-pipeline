@@ -33,29 +33,28 @@ jobs:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           # github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      # - name: Install commitizen
-      #   run: |
-      #     pip install commitizen
-      #     git init
-      #     cz bump
-      #     cz changelog
-
-
-      - name: Create bump and changelog
-        id: changelog
-        uses: commitizen-tools/commitizen-action@master
-        with:
-          github_token: "${{ secrets.GITHUB_TOKEN }}"
-          # github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          changelog_file: CHANGELOG.md
-          changelog_incremental: true
-
-      - name: Outputs Changelogs
+      - name: Install commitizen
         run: |
-          echo ${{ steps.changelog.outputs }}
+          pip install commitizen
+          git init
+          cz changelog
+          cz bump
 
-      - name: Print Version
-        run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
+      # - name: Create bump and changelog
+      #   id: changelog
+      #   uses: commitizen-tools/commitizen-action@master
+      #   with:
+      #     github_token: "${{ secrets.GITHUB_TOKEN }}"
+      #     # github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      #     changelog_file: CHANGELOG.md
+      #     changelog_incremental: true
+
+      # - name: Outputs Changelogs
+      #   run: |
+      #     echo ${{ steps.changelog.outputs }}
+
+      # - name: Print Version
+      #   run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
 
       - name: Create Release
         id: create_release
