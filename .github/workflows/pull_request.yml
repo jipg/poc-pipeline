@@ -33,14 +33,14 @@ jobs:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           # github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      - name: Install commitizen
-        run: |
-          pip install commitizen
-          git init
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          echo cz bump --yes --bump-message --changelog
-          git push
+      # - name: Install commitizen
+      #   run: |
+      #     pip install commitizen
+      #     git init
+      #     git config user.name 'github-actions[bot]'
+      #     git config user.email 'github-actions[bot]@users.noreply.github.com'
+      #     echo cz bump --yes --bump-message --changelog
+      #     git push
 
       # - name: Create bump and changelog
       #   id: changelog
