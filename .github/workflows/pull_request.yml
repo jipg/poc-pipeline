@@ -37,6 +37,8 @@ jobs:
         run: |
           pip install commitizen
           git init
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
           cz changelog
           echo "y\n" | cz bump
 
