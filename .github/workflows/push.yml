@@ -52,36 +52,34 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           echo cz bump --yes --bump-message --changelog
-          git add .
-          git commit -m "Make qmubdump"
           git push
 
-  bump-version:
-    if: "!startsWith(github.event.head_commit.message, 'bump:')"
-    runs-on: ubuntu-latest
-    name: "Bump version and create changelog with commitizen"
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-    steps:
-      - name: Check out
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          token: "${{ secrets.GITHUB_TOKEN }}"
+  # bump-version:
+  #   if: "!startsWith(github.event.head_commit.message, 'bump:')"
+  #   runs-on: ubuntu-latest
+  #   name: "Bump version and create changelog with commitizen"
+  #   permissions:
+  #     contents: write
+  #     issues: write
+  #     pull-requests: write
+  #   steps:
+  #     - name: Check out
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #         token: "${{ secrets.GITHUB_TOKEN }}"
 
-      # - name: Create bump and changelog
-      #   uses: commitizen-tools/commitizen-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      # changelog_increment_filename: CHANGELOG.md
+  # - name: Create bump and changelog
+  #   uses: commitizen-tools/commitizen-action@master
+  #   with:
+  #     github_token: ${{ secrets.GITHUB_TOKEN }}
+  # changelog_increment_filename: CHANGELOG.md
 
-      # - name: Create bump and changelog
-      #   id: changelog
-      #   uses: commitizen-tools/commitizen-action@master
-      #   with:
-      #     github_token: "${{ secrets.GITHUB_TOKEN }}"
-      #     # github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      #     changelog_file: CHANGELOG.md
-      #     # changelog_incremental: true
+  # - name: Create bump and changelog
+  #   id: changelog
+  #   uses: commitizen-tools/commitizen-action@master
+  #   with:
+  #     github_token: "${{ secrets.GITHUB_TOKEN }}"
+  #     # github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+  #     changelog_file: CHANGELOG.md
+  #     # changelog_incremental: true
