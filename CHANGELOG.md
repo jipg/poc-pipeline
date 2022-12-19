@@ -1,3 +1,29 @@
+## v0.3.0 (2022-12-18)
+
+### Feat
+
+- **msg**: Change versioning
+
+### Fix
+
+- **msg**: Change loggin workflow
+- **bump**: Add more loggins
+- **bump**: Echo messages
+- **bump**: Loggin messages
+- **bump**: Change bump method for release
+- **bump**: No commit bump
+- **bump**: Change ci
+- **msg**: Change universe msg
+- **bump**: Failed the bumpo
+- **msg**: Change bye msg
+- **msg**: Change to RE/RE
+- **msg**: Change the message for bump
+- **msg**: Change the message
+- **msg**: Cnange the message
+- **msg**: Test message hello
+- **msg**: Change the messge
+- **msg**: Change the msg for test
+
 ## v0.2.1 (2022-12-18)
 
 ### Fix
