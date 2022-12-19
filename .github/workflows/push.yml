@@ -21,6 +21,7 @@ jobs:
 
       - name: Pip installations
         run: |
+          pip install --upgrade pip
           pip install pre-commit
           pip install shellcheck-py
           pip install pydocstyle
@@ -52,7 +53,6 @@ jobs:
           echo "### Computability Complexity ###"
           radon raw .
 
-      - run: pip install .
       - run: pip install python-semantic-release
       - run: git config --global user.name "github-actions"
       - run: git config --global user.email "action@github.com"
