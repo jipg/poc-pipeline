@@ -62,11 +62,15 @@ jobs:
           echo "\n##############"
           git branch
           echo "\n##############"
-          git log --oneline --abbrev-commit
+          git log
           echo "\n##############"
           git tag --list
           echo "\n##############"
-          echo cz bump --yes --bump-message --changelog
+          echo cz bump --yes --bump-message
+          echo "\n##############"
+          git log
+          echo "\n##############"
+          echo cz bump --changelog
           echo "\n##############"
           git push
           git push --tags
