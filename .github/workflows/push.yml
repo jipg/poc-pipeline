@@ -6,6 +6,10 @@ on: [push]
 jobs:
   linters:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
         with:
@@ -48,13 +52,27 @@ jobs:
       - name: Install commitizen
         if: "!startsWith(github.event.head_commit.message, 'bump:')"
         run: |
+          echo "\n##############"
+          ls -rlta
+          echo "\n##############"
           pip install commitizen
+          echo "\n##############"
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
+          echo "\n##############"
+          git branch
+          echo "\n##############"
+          git log ---oneline --abbrev-commit
+          echo "\n##############"
           echo cz bump --yes --bump-message --changelog
+          echo "\n##############"
           git push
           git push --tags
+          echo "\n##############"
+          git rev-list --tags --max-count=1
+          echo "\n##############"
           cat CHANGELOG.md
+          echo "\n##############"
           cat pyproject.toml
 
   # bump-version:
