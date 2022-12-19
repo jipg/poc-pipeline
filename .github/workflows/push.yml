@@ -52,6 +52,13 @@ jobs:
           echo "### Computability Complexity ###"
           radon raw .
 
+      - name: Review head commit
+        run: |
+          echo "### EVENTS ###"
+          echo ${{github.event}}
+          echo "### github.event.head_commit.message ###"
+          echo ${{github.event.head_commit.message}}
+
       - name: Install commitizen
         if: "!startsWith(github.event.head_commit.message, 'bump:')"
         run: |
