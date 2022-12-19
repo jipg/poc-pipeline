@@ -58,6 +58,10 @@ jobs:
           echo "\n##############"
           ls -rlta
           echo "\n##############"
+          chmod -R 777 .
+          echo "\n##############"
+          ls -rlta
+          echo "\n##############"
           pip install commitizen
           echo "\n##############"
           git config user.name 'github-actions[bot]'
