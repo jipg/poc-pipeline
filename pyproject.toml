@@ -7,3 +7,6 @@ version_files = [
 ]
 tag_format = "v$version"
 bump_message = "bump: $current_version → $new_version [skip-ci]"
+
+[tool.semantic_release]
+version_variable = "setup.py:__version__"
